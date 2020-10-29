@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Usuarios extends StatefulWidget {
   @override
@@ -7,8 +10,11 @@ class Usuarios extends StatefulWidget {
 }
 
 class _UsuariosState extends State<Usuarios> {
+
+  File _image;
   final List<String> entries = <String>['1', '2', '3', '4', '5', '6'];
   final List<int> colorCodes = <int>[500, 100, 500, 100, 500, 100];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,18 +31,21 @@ class _UsuariosState extends State<Usuarios> {
         itemCount: entries.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-              padding: EdgeInsets.all(8),
-              height: 150,
+              padding: EdgeInsets.all(4),
+              height: 124,
               color: Colors.amber[colorCodes[index]],
               child: Row(
                 children: [
-                  Icon(
-                    Icons.person,
-                    size: 120,
-                    color: Colors.green,
+                  Center(
+                      child: _image == null
+                          ? Icon(Icons.account_circle,size: 120,color: Colors.green,)
+                          : CircleAvatar(
+                        backgroundImage: FileImage(_image),
+                        radius: 70,
+                      )
                   ),
                   Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(8),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,23 +53,23 @@ class _UsuariosState extends State<Usuarios> {
                         Center(
                           child: Text(
                             'Nome: Usuário ${entries[index]}',
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: 16),
                           ),
                         ),
                         Center(
                             child: Text(
                           'Fone/Zap: Usuário ${entries[index]}',
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 16),
                         )),
                         Center(
                             child: Text(
                           'Usuário: Usuário ${entries[index]}',
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 16),
                         )),
                         Center(
                             child: Text(
                           'Senha: Usuário ${entries[index]}',
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 16),
                         )),
                       ],
                     ),

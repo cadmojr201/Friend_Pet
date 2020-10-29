@@ -1,8 +1,12 @@
+import 'dart:io';
+import 'package:splashscreen/splashscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:friend_pet/cadastro.dart';
 import 'package:friend_pet/cadastro_pet.dart';
 import 'package:friend_pet/login.dart';
 import 'package:friend_pet/relatorios.dart';
+
 
 void main() {
   runApp(MaterialApp(
@@ -19,8 +23,35 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return SplashScreen(
+        seconds: 5,
+        navigateAfterSeconds: AfterSplash(),
+        title: Text('Friend Pet',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 32,
+              color: Colors.white
+          ),),
+        image: Image.asset(
+          "images/Pets.png",
+          //width: 300,
+          //height: 700,
+        ),
+        backgroundColor: Colors.green,
+        styleTextUnderTheLoader: TextStyle(),
+        photoSize: 150,
+        onClick: ()=>print("Flutter Egypt"),
+        loaderColor: Colors.lightGreen
+    );
+  }
+}
+
+class AfterSplash extends StatelessWidget {
   final List<String> entries = <String>['1', '2', '3', '4', '5', '6'];
   final List<int> colorCodes = <int>[500, 100, 500, 100, 500, 100];
+  File _image;
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +172,7 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      drawer: Drawer(
+        drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
@@ -160,6 +191,16 @@ class _HomeState extends State<Home> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Login()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.account_circle_outlined),
+              title: Text('Cadastre-se'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Cadastro()),
                 );
               },
             ),
@@ -188,15 +229,18 @@ class _HomeState extends State<Home> {
         itemCount: entries.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-              padding: EdgeInsets.all(8),
-              height: 150,
+              padding: EdgeInsets.all(4),
+              height: 124,
               color: Colors.amber[colorCodes[index]],
               child: Row(
                 children: [
-                  Image.asset(
-                    "images/Pets.png",
-                    width: 160,
-                    height: 230,
+                  Center(
+                      child: _image == null
+                          ? Image.asset("images/Pets.png", height: 130)
+                          : CircleAvatar(
+                        backgroundImage: FileImage(_image),
+                        radius: 70,
+                      )
                   ),
                   Padding(
                     padding: EdgeInsets.all(10),
@@ -241,7 +285,7 @@ class _HomeState extends State<Home> {
           );
         },
         label: Text(
-          'Cadastrar pet',
+          'Add Pet',
           style: TextStyle(fontSize: 20),
         ),
         icon: Icon(Icons.add),

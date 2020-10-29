@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Pets extends StatefulWidget {
   @override
@@ -9,6 +12,8 @@ class Pets extends StatefulWidget {
 class _PetsState extends State<Pets> {
   final List<String> entries = <String>['1', '2', '3', '4', '5', '6'];
   final List<int> colorCodes = <int>[500, 100, 500, 100, 500, 100];
+  File _image;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,16 +30,20 @@ class _PetsState extends State<Pets> {
         itemCount: entries.length,
         itemBuilder: (BuildContext context, int index) {
           return Container(
-              padding: EdgeInsets.all(8),
-              height: 150,
+              padding: EdgeInsets.all(4),
+              height: 124,
               color: Colors.amber[colorCodes[index]],
               child: Row(
                 children: [
-                  Image.asset(
-                    "images/Pets.png",
-                    width: 180,
-                    height: 250,
+                  Center(
+                      child: _image == null
+                          ? Image.asset("images/Pets.png", height: 130)
+                          : CircleAvatar(
+                        backgroundImage: FileImage(_image),
+                        radius: 70,
+                      )
                   ),
+
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: Column(
@@ -44,23 +53,23 @@ class _PetsState extends State<Pets> {
                         Center(
                           child: Text(
                             'Nome: Pet ${entries[index]}',
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: 16),
                           ),
                         ),
                         Center(
                             child: Text(
                               'Raça: Pet ${entries[index]}',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: 16),
                             )),
                         Center(
                             child: Text(
                               'Porte: Pet ${entries[index]}',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: 16),
                             )),
                         Center(
                             child: Text(
                               'Fone/Zap: Zap Pet ${entries[index]}',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: 16),
                             )),
                       ],
                     ),

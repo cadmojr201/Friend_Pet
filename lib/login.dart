@@ -27,25 +27,25 @@ class _LoginState extends State<Login> {
           children: [
             Image.asset(
               "images/Pets.png",
-              width: 300,
-              height: 250,
+              //width: 300,
+              height: 180,
               //fit: BoxFit.fitWidth,
             ),
             TextField(
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                   labelText: "Usuário:",
-                  labelStyle: TextStyle(color: Colors.white, fontSize: 26)),
+                  labelStyle: TextStyle(color: Colors.white, fontSize: 20)),
             ),
             TextField(
               decoration: InputDecoration(
                   labelText: "Senha:",
-                  labelStyle: TextStyle(color: Colors.white, fontSize: 26)),
+                  labelStyle: TextStyle(color: Colors.white, fontSize: 20)),
             ),
             Padding(
                 padding: EdgeInsets.fromLTRB(30, 20, 30, 10),
                 child: Container(
-                  height: 50,
+                  height: 45,
                   child: RaisedButton(
                     padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
                     color: Colors.green,
@@ -54,7 +54,7 @@ class _LoginState extends State<Login> {
                       "Login",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 24,
+                        fontSize: 22,
                       ),
                     ),
                   ),

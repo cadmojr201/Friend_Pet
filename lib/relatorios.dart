@@ -24,25 +24,26 @@ class _RelatoriosState extends State<Relatorios> {
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(12, 0, 12, 0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.all(30),
+              padding: EdgeInsets.all(15),
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Text(
                   "Relatórios de Cadastro",
-                  style: TextStyle(fontSize: 32, color: Colors.white),
+                  style: TextStyle(fontSize: 28, color: Colors.white),
                 ),
               )
 
             ),
 
             Padding(
-                padding: EdgeInsets.fromLTRB(30, 80, 30, 10),
+                padding: EdgeInsets.fromLTRB(10, 120, 10, 10),
                 child: Container(
-                  height: 50,
+                  height: 45,
                   child: RaisedButton(
-                    padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                     color: Colors.green,
                     onPressed: () {
                       Navigator.push(
@@ -54,17 +55,17 @@ class _RelatoriosState extends State<Relatorios> {
                       "Usuários Cadastrados",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 24,
+                        fontSize: 22,
                       ),
                     ),
                   ),
                 )),
             Padding(
-                padding: EdgeInsets.fromLTRB(30, 80, 30, 10),
+                padding: EdgeInsets.fromLTRB(10, 50, 10, 10),
                 child: Container(
-                  height: 50,
+                  height: 45,
                   child: RaisedButton(
-                    padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                    padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                     color: Colors.green,
                     onPressed: () {
                       Navigator.push(
@@ -76,7 +77,7 @@ class _RelatoriosState extends State<Relatorios> {
                       "Pets Cadastrados",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 24,
+                        fontSize: 22,
                       ),
                     ),
                   ),
